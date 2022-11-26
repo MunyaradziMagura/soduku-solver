@@ -1,25 +1,37 @@
 import type { Component } from 'solid-js';
-
-import logo from './logo.svg';
+import Board from './Components/Board'
 import styles from './App.module.css';
 
 const App: Component = () => {
+  let boardState = [
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  ]
+  function checkSoduku() {
+    let validBoard = true
+
+    // check each row 
+    boardState.map(row => {
+      let result: number = row.reduce((total, currentValue) => total + currentValue)
+      if (result < 45) validBoard = false
+    })
+    // check each col 
+
+    // check each box
+
+    console.log(validBoard)
+  }
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
+    <div>
+      <Board boardState={boardState} />
+      <button onClick={() => checkSoduku()}>check</button>
     </div>
   );
 };
