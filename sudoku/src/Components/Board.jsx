@@ -1,9 +1,6 @@
 import React from 'react'
 
 export default function Board({boardState}) {
-
-  
-  
   return (
     <table>
     {boardState.map((element, index) => (
