@@ -17,13 +17,17 @@ const App: Component = () => {
   function checkSoduku() {
     let validBoard = true
 
-    // check each row 
-    boardState.map(row => {
-      let result: number = row.reduce((total, currentValue) => total + currentValue)
-      if (result < 45) validBoard = false
+    boardState.forEach((row, index) => {
+      // check each row 
+      let rowResult: number = row.reduce((total, currentValue) => total + currentValue)
+      // let colResult: number = 
+
+      console.log(row)
+      if (rowResult < 45) validBoard = false
     })
     // check each col 
 
+    console.log(boardState[8][8])
     // check each box
 
     console.log(validBoard)
