@@ -15,6 +15,8 @@ const App: Component = () => {
     [2, 4, 1, 5, 9, 8, 6, 7, 3]
   ]
   function checkSoduku() {
+    const validNumbersControl = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
     let validBoard = true
     let validTotal = 45 // total sum of each row, col, and 3x3 cube
 
@@ -28,8 +30,19 @@ const App: Component = () => {
       row.forEach((val, subIndex) => {
         colResult += boardState[subIndex][index]
 
+        // check if we are at an intersection of 3x3 within the grid
         if (index % 3 == 0 && subIndex % 3 == 0) {
-          console.log(threebyThree(boardState, subIndex, index))
+          const threeByThreeBoard = threebyThree(boardState, subIndex, index).flat()
+
+          // convert the array into a 1d array for validation. then check if all elements within the array are equal to the validNumbersControl array
+          const threeXThreeValidation = threeByThreeBoard.every((element) => {
+            if (validNumbersControl.includes(element)) return true
+            return false
+          });
+
+          if (!threeXThreeValidation) validBoard = false
+          // check that the 3x3 grid is not larger or smaller than 45
+          if (threeByThreeBoard.reduce((total, currentValue) => total + currentValue) != validTotal) validBoard = false
 
         }
       })
@@ -52,7 +65,7 @@ const App: Component = () => {
       }
       grid3x3.push(tempGrid)
     }
-    return grid3x3;
+    return grid3x3; // returns 3x3 array
   }
   return (
     <div>
