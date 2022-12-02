@@ -16,7 +16,8 @@ const App: Component = () => {
   ]
   function checkSoduku() {
     let validBoard = true
-    let validTotal = 45
+    let validTotal = 45 // total sum of each row, col, and 3x3 cube
+
     boardState.forEach((row, index) => {
       let colResult = 0
       // check each row total is 45
@@ -26,14 +27,32 @@ const App: Component = () => {
       // check each col total is 45
       row.forEach((val, subIndex) => {
         colResult += boardState[subIndex][index]
+
+        if (index % 3 == 0 && subIndex % 3 == 0) {
+          console.log(threebyThree(boardState, subIndex, index))
+
+        }
       })
       if (colResult != validTotal) validBoard = false
-
-
     })
-    // check each box
 
+    // check each box
     console.log(validBoard)
+  }
+
+  function threebyThree(_grid: any, _x: number, _y: number) {
+
+    // three by three grid 
+    let grid3x3 = []
+    // loop through a three by three 
+    for (let i = 0; i < 3; i++) {
+      let tempGrid = [] // stores one by three grid 
+      for (let j = 0; j < 3; j++) {
+        tempGrid.push(_grid[_y + i][_x + j])
+      }
+      grid3x3.push(tempGrid)
+    }
+    return grid3x3;
   }
   return (
     <div>
