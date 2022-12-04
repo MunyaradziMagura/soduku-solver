@@ -3,8 +3,8 @@ import Board from './Components/Board'
 import styles from './App.module.css';
 import sudokuChecker from '../server/sudokuChecker'
 const App: Component = () => {
-  const [valid, setValid] = createSignal("false")
-  const [initialBoard, setInitialBoard] = createSignal(
+  const [valid, setValid] = createSignal<string>("false")
+  const [initialBoard, setInitialBoard] = createSignal<number[][]>(
     [
       [7, 0, 6, 3, 0, 9, 4, 1, 8],
       [4, 0, 0, 1, 0, 0, 2, 3, 9],
@@ -36,7 +36,7 @@ const App: Component = () => {
     copyBoard[_y][_x] = _value
 
     setInitialBoard(copyBoard)
-    console.log(valid)
+    console.log(initialBoard())
 
 
   }

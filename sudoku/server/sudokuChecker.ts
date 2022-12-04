@@ -1,5 +1,6 @@
 
-export default function sudokuChecker(boardState: any) {
+export default function sudokuChecker(_boardState: number[][]) {
+  const boardState = [...[_boardState][0]]
   const validNumbersControl = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
   let validBoard = true
@@ -48,6 +49,8 @@ export default function sudokuChecker(boardState: any) {
     return grid3x3; // returns 3x3 array
   }
 
+  const boardValidationState = (validBoard) ? "board is valid" : "board is invalid"
+
   // check each box,returns true or false
-  return validBoard.toString()
+  return boardValidationState
 }
